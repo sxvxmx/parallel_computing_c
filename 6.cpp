@@ -51,12 +51,12 @@ int lock(vector<int> v1, vector<int> v2){
 
 int reduc(vector<int> v1, vector<int> v2){
     int m = 0,sum = 0;
-    #pragma omp parallel private(m) reduction(+:sum)
+    #pragma omp parallel 
     {
-        #pragma omp for
+        #pragma omp for private(m) reduction(+:sum)
         for(int i = 0;i<v1.size();i++){
             m = v1[i] * v2[i];
-        sum += m;
+            sum = sum + m;
         }
     }
     return sum;

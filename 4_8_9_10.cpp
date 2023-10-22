@@ -6,8 +6,8 @@ using namespace std;
 
 int main(){
     int n = 10000;
-    // omp_set_num_threads(14);
-    omp_set_nested(14);
+    omp_set_num_threads(14);
+    // omp_set_nested(14);
     vector<vector<int>> a(n);
     for(int i = 0;i<n;i++){
         a[i] = create_vec(n,i+1);
@@ -29,6 +29,7 @@ int main(){
     }
     #pragma omp for
     for(int o = 0;o<n;o++)
+        #pragma omp critical
         m = max(m,mem[o]);
     }
     double t2 = omp_get_wtime();

@@ -22,6 +22,7 @@ int tri_mat(vector<vector<int>> a){
     }
     #pragma omp for
     for(int o = 0;o<n;o++)
+        #pragma omp critical
         m = max(m,mem[o]);
     }
     return m;
@@ -44,6 +45,7 @@ int rib_mat(vector<vector<int>> a, int size = 1){
     }
     #pragma omp for
     for(int o = 0;o<n;o++)
+        #pragma omp critical
         m = max(m,mem[o]);
     }
     return m;

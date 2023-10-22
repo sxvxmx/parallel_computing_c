@@ -5,25 +5,31 @@
 using namespace std;
 
 double func(double x){
-    return x*x;
+    return x*x - 30 * x;
 }
 
 template<typename Func>
-double integrity(Func f, double a, double b, int n){
+double integrity(Func f, double a, double b, long long n){
     double sum = 0;
     double h = (b-a)/n;
-    // #pragma omp for
-    for(int i = 0; i<=n; i++){
-        sum += f(a + i*h);
-    };
+    double m;
+    #pragma omp parallel 
+    { 
+        #pragma omp for private(m) reduction(+:sum)
+        for(int i = 0; i<=n; i++){
+            m = f(a + i*h);
+            sum = sum + m;
+        };
+    }
     return h*sum;
 }
 
 int main(){
+    long long n = 1000000000;
+    for(long long i = 10;i<=n;i*=10){
     double t1 = omp_get_wtime();
-    double sum = integrity(func,0,100000,10000000);
+    double sum = integrity(func,0,1000000000,i);
     double t2 = omp_get_wtime();
-    cout<<t2-t1;
-    cout<<endl<<sum<<endl;
-    return 0;
+    cout<<t2-t1<<",";
+    }
 }

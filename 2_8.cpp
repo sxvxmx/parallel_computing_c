@@ -8,22 +8,28 @@ using namespace std;
 
 int main(){
     // omp_set_num_threads(14);
-    omp_set_nested(10);
-    int n = 100000000;
-    auto v1 = create_vec(n,1);
-    auto v2 = create_vec(n,1);
+    long n = 1000000000;
+    for(long long i = 10;i<=n;i*=10){
+    auto v1 = create_vec(i,1);
+    auto v2 = create_vec(i,1);
     // print_vec(v1);
     // newline;
     // print_vec(v2);
     int sum = 0;
+    int m = 0;
 
     double t1 = omp_get_wtime();
-    #pragma omp for
-    for(int i = 0;i<v1.size();i++){
-            sum += v1[i]*v2[i];
-    };
+     #pragma omp parallel
+    {
+         #pragma omp parallel for private(m) reduction(+:sum)
+        for(int o = 0;o<i;o++){
+            m = v1[o]*v2[o];
+            sum = sum + m;
+        };
+    }
+    
     double t2 = omp_get_wtime();
-    cout<<endl<<t2-t1;
-    cout<<endl<<sum<<endl;
+    cout<<t2-t1<<",";
+    }
     return 0;
 }
