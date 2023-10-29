@@ -25,11 +25,14 @@ double integrity(Func f, double a, double b, long long n){
 }
 
 int main(){
+    for(int k = 0;k<=14; k+=2){
+    omp_set_num_threads(k);
     long long n = 1000000000;
-    for(long long i = 10;i<=n;i*=10){
+    for(long long i = n;i<=n;i*=10){
     double t1 = omp_get_wtime();
     double sum = integrity(func,0,1000000000,i);
     double t2 = omp_get_wtime();
     cout<<t2-t1<<",";
+    }
     }
 }

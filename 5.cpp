@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int tri_mat(vector<vector<int>> a){
+int tri_mat(vector<vector<int>>& a){
     int n = a.size();
     int m = -1;
     vector<int> mem(n);
@@ -22,13 +22,15 @@ int tri_mat(vector<vector<int>> a){
     }
     #pragma omp for
     for(int o = 0;o<n;o++)
-        #pragma omp critical
-        m = max(m,mem[o]);
+        if(m < mem[o]){
+            #pragma omp critical
+            m = max(m,mem[o]);
+        }
     }
     return m;
 }
 
-int rib_mat(vector<vector<int>> a, int size = 1){
+int rib_mat(vector<vector<int>>& a, int size = 1){
     int n = a.size();
     int m = -1;
     vector<int> mem(n);
@@ -45,8 +47,10 @@ int rib_mat(vector<vector<int>> a, int size = 1){
     }
     #pragma omp for
     for(int o = 0;o<n;o++)
+    if(m < mem[o]){
         #pragma omp critical
         m = max(m,mem[o]);
+    }
     }
     return m;
 }
