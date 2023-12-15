@@ -3,7 +3,7 @@
 using namespace std;
 
 template<typename T>
-void print_vec(vector<T> vec){
+void print_vec(vector<T>& vec){
     cout<<"[ ";
     for(auto i = vec.begin();i != vec.end();i++)
         cout<<*i<<" ";

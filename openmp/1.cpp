@@ -6,9 +6,9 @@ using namespace std;
 
 int main(){
     int r = 12;
-    omp_set_num_threads(r);
-    long n = 100000000;
-    for(long i =10;i<=n;i*=10){
+    // omp_set_num_threads(r);
+    long n = 1000000000;
+    for(long i =10000;i<=n;i*=10){
     auto v = create_vec(i,1);
     vector<int> thr1(r);
     vector<int> thr2(r);
