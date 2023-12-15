@@ -1,5 +1,4 @@
 # OpenMP and OpenMPI Exploration Project
-Overview
 This project aims to explore the fundamental features of OpenMP and OpenMPI to enhance the understanding and proficiency of parallel programming in C++. The focus will be on developing programs that leverage the capabilities of these parallelization frameworks.
 
 ## Project Goals
