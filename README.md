@@ -2,8 +2,6 @@
 This project aims to explore the fundamental features of OpenMP and OpenMPI to enhance the understanding and proficiency of parallel programming in C++. The focus will be on developing programs that leverage the capabilities of these parallelization frameworks.
 
 ## Project Goals
-Understanding OpenMP:
-
 1. Gain insights into the basics of OpenMP parallel programming.
 Explore directives, clauses, and constructs for parallelizing code segments.
 Implement simple programs to demonstrate parallelism using OpenMP.
